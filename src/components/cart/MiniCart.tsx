@@ -13,14 +13,15 @@ export default function MiniCart({ isOpen, onClose }: { isOpen: boolean; onClose
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50">
       <div className="absolute right-0 top-0 bg-white h-full w-96 max-w-full shadow-lg">
         <div className="p-4 border-b flex justify-between items-center">
-          <h3 className="font-medium">Your Cart ({cart.length} items)</h3>
+          {/* Ligne corrigée */}
+          <h3 className="font-medium">Your Cart ({cart?.length || 0} items)</h3>
           <button className="text-gray-500 hover:text-black" onClick={onClose}>
             <i className="fas fa-times"></i>
           </button>
         </div>
         
         <div className="max-h-96 overflow-y-auto p-4">
-          {cart.length === 0 ? (
+          {!cart || cart.length === 0 ? (
             <p className="text-center text-gray-500 py-8">Your cart is empty</p>
           ) : (
             <Fragment>
@@ -72,7 +73,7 @@ export default function MiniCart({ isOpen, onClose }: { isOpen: boolean; onClose
         <div className="p-4 border-t mt-auto">
           <div className="flex justify-between font-medium mb-4">
             <span>Subtotal:</span>
-            <span>${totalPrice.toFixed(2)}</span>
+            <span>${totalPrice?.toFixed(2) || '0.00'}</span>
           </div>
           <Link href="/cart" className="block bg-black text-white text-center py-2 rounded-lg mb-2 hover:bg-gray-900 transition" onClick={onClose}>
             View Cart
