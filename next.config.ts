@@ -9,12 +9,10 @@ const nextConfig = {
       },
     ],
   },
-  
-  // Ajouter cette configuration
-  allowedDevOrigins: [
-    '192.168.1.11', // Votre adresse IP locale
-    'localhost',
-  ],
-}
+  // Si vous avez besoin du allowedDevOrigins
+  experimental: {
+    allowedDevOrigins: ['localhost', '192.168.1.11'],
+  }
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
